@@ -277,7 +277,7 @@ struct _GlgLineGraphPrivate
     GdkRGBA    title_color;
     GdkRGBA    series_color;
     /* mouse device */
-    GdkDeviceManager *device_manager;
+    /* GdkDeviceManager *device_manager; */
     GdkDevice        *device_pointer;
     /* data points and tooltip info */
     gint        i_points_available;
@@ -607,6 +607,7 @@ static void glg_line_graph_realize (GtkWidget *widget)
   GdkWindowAttr attributes;
   gint attributes_mask;
   GlgLineGraphPrivate *priv = NULL;
+  GdkSeat *seat = NULL;
 
   g_debug ("===> glg_line_graph_realize(entered)");
 
@@ -640,9 +641,9 @@ static void glg_line_graph_realize (GtkWidget *widget)
       priv->window = gdk_window_new (gtk_widget_get_parent_window (widget), &attributes, attributes_mask);
       gtk_widget_register_window (widget, priv->window);
       gtk_widget_set_window (widget, priv->window);
-	  
-      priv->device_manager = gdk_display_get_device_manager ( gtk_widget_get_display (widget) );
-      priv->device_pointer = gdk_device_manager_get_client_pointer (priv->device_manager);
+
+      seat = gdk_display_get_default_seat ( gtk_widget_get_display (widget) );
+      priv->device_pointer = gdk_seat_get_pointer(seat);
     }
 
   glg_line_graph_send_configure (GLG_LINE_GRAPH(widget));
