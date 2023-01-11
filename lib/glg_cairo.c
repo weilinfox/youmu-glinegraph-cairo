@@ -589,7 +589,7 @@ static void glg_line_graph_init (GlgLineGraph *graph)
 	gtk_widget_set_app_paintable (GTK_WIDGET(graph), TRUE);
 
 	priv->cb_id = GLG_PRIVATE_ID;
-	priv->b_tooltip_active = FALSE;
+	priv->b_tooltip_active = TRUE;
 	priv->b_mouse_onoff = FALSE;
 	if (priv->series_line_width < 1) { 
 		priv->series_line_width = 2;
@@ -1855,7 +1855,7 @@ static gint glg_line_graph_draw_tooltip (GlgLineGraph *graph)
 
         g_snprintf (ch_buffer, sizeof (ch_buffer),
                     "Sample #%d<small>", v_index);
-                    
+
         data_sets = g_list_first (priv->lg_series);
         while (data_sets)
         {
