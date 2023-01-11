@@ -1854,7 +1854,7 @@ static gint glg_line_graph_draw_tooltip (GlgLineGraph *graph)
         time_t      point_time;
 
         g_snprintf (ch_buffer, sizeof (ch_buffer),
-                    "<small>{ <u>sample #%d</u>}", v_index);
+                    "Sample #%d<small>", v_index);
                     
         data_sets = g_list_first (priv->lg_series);
         while (data_sets)
@@ -1877,7 +1877,7 @@ static gint glg_line_graph_draw_tooltip (GlgLineGraph *graph)
 
                 g_snprintf (ch_work, sizeof (ch_work), "%s", ch_buffer);
                 g_snprintf (ch_buffer, sizeof (ch_buffer),
-                            "%s\n{%3.2lf <span foreground=\"%s\">%s</span> @ %s}",
+                            "%s\n<u>{%3.2lf <span foreground=\"%s\">%s</span> @ %s}</u>",
                             ch_work,
                             psd->lg_point_dvalue[v_index],
                             psd->ch_legend_color, psd->ch_legend_text,
